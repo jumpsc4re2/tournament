@@ -1,0 +1,44 @@
+CREATE TABLE individuals (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(255),
+    email VARCHAR(255),
+    password VARCHAR(255)
+);
+
+CREATE TABLE teams (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    team_name VARCHAR(255),
+    email VARCHAR(255),
+    password VARCHAR(255),
+    member1 VARCHAR(255),
+    member2 VARCHAR(255),
+    member3 VARCHAR(255),
+    member4 VARCHAR(255),
+    member5 VARCHAR(255)
+);
+
+CREATE TABLE ind_events (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    event_name VARCHAR(255)
+);
+
+CREATE TABLE team_events (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    event_name VARCHAR(255)
+);
+
+CREATE TABLE ind_events_participation (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    player_id INT,
+    event_id INT,
+    FOREIGN KEY (player_id) REFERENCES individuals(id),
+    FOREIGN KEY (event_id) REFERENCES ind_events(id)
+);
+
+CREATE TABLE team_events_participation (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    team_id INT,
+    event_id INT,
+    FOREIGN KEY (team_id) REFERENCES teams(id),
+    FOREIGN KEY (event_id) REFERENCES team_events(id)
+);
